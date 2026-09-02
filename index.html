@@ -4,35 +4,44 @@
 <meta charset="UTF-8">
 <title>나의 롤모델 - 브레인스토밍</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
   :root{
-    --paper: #FFFFFF;
-    --bg: #F4F2EE;
-    --line: #C9C4BA;
-    --ink: #222222;
-    --accent: #2F6E62;
-    --accent-soft: #E4EFEC;
+    --bg: #FAF6F1;
+    --ink: #3F3630;
+    --accent: #E8899B;
+    --accent-dark: #D06E82;
+    --accent-soft: #FBEBEE;
+    --example-bg: #EDF6F0;
+    --example-text: #3E7A5E;
+    --line: #EFE6DB;
   }
   *{ box-sizing: border-box; }
   body{
     margin:0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Noto Sans KR', sans-serif;
-    padding: 26px 16px 60px;
+    font-family: 'Gowun Dodum', sans-serif;
+    padding: 30px 16px 60px;
   }
-  .page{ max-width: 900px; margin: 0 auto; }
-  header{ text-align:center; margin-bottom: 20px; }
-  header h1{ font-size: 1.7rem; margin: 0 0 6px; color: var(--accent); }
-  header p{ font-size: 0.95rem; color: #555; margin: 4px 0; }
+  .page{ max-width: 1000px; margin: 0 auto; }
+
+  header{ text-align:center; margin-bottom: 22px; }
+  header h1{
+    font-family: 'Jua', sans-serif;
+    font-weight: 400;
+    font-size: 1.65rem;
+    margin: 0 0 8px;
+    color: var(--accent-dark);
+  }
+  header p{ font-size: 0.95rem; color: #8a7c73; margin: 4px 0; }
 
   .id-row{
     display:flex;
     justify-content:center;
     gap: 20px;
-    margin-top: 14px;
+    margin-top: 16px;
     flex-wrap: wrap;
   }
   .id-field{
@@ -42,90 +51,140 @@
     font-size: 0.92rem;
     color: var(--ink);
   }
-  .id-field span{ font-weight: 700; }
+  .id-field span{ font-weight: 700; color: #8a7c73; }
   .id-field input{
     border: none;
     border-bottom: 1px solid var(--line);
     background: transparent;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Gowun Dodum', sans-serif;
     font-size: 0.95rem;
     padding: 3px 4px;
     outline: none;
-    min-width: 120px;
+    min-width: 110px;
+    color: var(--ink);
   }
   .id-field input:focus{ border-bottom-color: var(--accent); }
 
-  .divider{ text-align:center; margin: 40px 0 10px; }
-  .divider:first-of-type{ margin-top: 6px; }
-  .divider span{
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: var(--accent);
-    background: var(--accent-soft);
-    padding: 6px 18px;
-    border-radius: 999px;
-  }
-  .note{ text-align:center; font-size: 0.85rem; color:#666; margin: 8px 0 0; }
-
-  .brain-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 12px;
-    margin-top: 14px;
-  }
-  .brain-card{
-    border-radius: 12px;
-    padding: 12px 14px 14px;
+  .capture-pad{
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px 20px 26px;
     border: 1px solid var(--line);
-    min-height: 96px;
   }
-  .brain-card .btitle{
-    font-weight: 700;
-    font-size: 0.88rem;
-    margin-bottom: 6px;
-  }
-  .brain-card .bnote{
-    font-size: 0.95rem;
-    line-height: 1.5;
-    min-height: 46px;
-    outline: none;
-  }
-  .brain-card .bnote:empty:before{ content: attr(data-placeholder); color: #8a8a8a; }
-  .brain-card.b1{ background:#FBF1DF; } .brain-card.b1 .btitle{ color:#C98D2E; }
-  .brain-card.b2{ background:#F1E9F4; } .brain-card.b2 .btitle{ color:#6B4C7A; }
-  .brain-card.b3{ background:#E9EFF5; } .brain-card.b3 .btitle{ color:#3C5B82; }
-  .brain-card.b4{ background:#F7E7EA; } .brain-card.b4 .btitle{ color:#9C3D4E; }
-  .brain-card.b5{ background:#EDF2E9; } .brain-card.b5 .btitle{ color:#5C7A52; }
-  .brain-card.b6{ background:#FDEBD9; } .brain-card.b6 .btitle{ color:#b5651d; }
-  .brain-card.b7{ background:#E4EFEC; } .brain-card.b7 .btitle{ color:var(--accent); }
-
-  .capture-pad{ padding: 4px 2px; }
   .capture-title{
     text-align:center;
+    font-family: 'Jua', sans-serif;
+    font-weight: 400;
     font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent);
-    margin: 4px 0 14px;
+    color: var(--accent-dark);
+    margin: 2px 0 14px;
   }
   .id-stamp{
     display:none;
     justify-content:center;
     gap: 18px;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--ink);
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 6px 14px;
-    margin-bottom: 12px;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 5px 14px;
+    margin: 0 auto 16px;
+    width: fit-content;
   }
   .id-stamp.show{ display:flex; }
 
-  .toolbar{ display:flex; justify-content:center; margin-top: 26px; }
+  .table-wrap{
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  table.brain-table{
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.92rem;
+    table-layout: fixed;
+  }
+  table.brain-table th, table.brain-table td{
+    padding: 12px 12px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--line);
+  }
+  table.brain-table th:first-child, table.brain-table td:first-child{ width: 15%; }
+  table.brain-table th:nth-child(2), table.brain-table td:nth-child(2),
+  table.brain-table th:nth-child(3), table.brain-table td:nth-child(3){ width: 16%; }
+  table.brain-table th:nth-child(4), table.brain-table td:nth-child(4),
+  table.brain-table th:nth-child(5), table.brain-table td:nth-child(5){ width: 26.5%; }
+
+  table.brain-table thead th{
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  table.brain-table thead tr:first-child th{
+    background: #F7F1E9;
+    color: #8a7c73;
+    padding: 9px;
+  }
+  table.brain-table thead tr:first-child th.example-head{
+    background: var(--example-bg);
+    color: var(--example-text);
+  }
+  table.brain-table thead tr:nth-child(2) th.example-sub{
+    background: #F4FAF6;
+    color: var(--example-text);
+    font-weight: 600;
+    font-size: 0.83rem;
+    padding: 7px;
+  }
+  table.brain-table thead tr:nth-child(2) th.own-sub{
+    background: #FBF8F4;
+    color: #8a7c73;
+    font-weight: 600;
+    font-size: 0.83rem;
+    padding: 7px;
+  }
+
+  table.brain-table tbody th{
+    background: #FCFAF7;
+    font-weight: 700;
+    color: var(--accent-dark);
+    white-space: normal;
+    font-size: 0.87rem;
+  }
+
+  table.brain-table tbody td.example-cell{
+    background: var(--example-bg);
+    color: #2F5F4A;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  table.brain-table tbody td.own-cell{
+    background: #fff;
+    text-align: left;
+    padding: 12px 14px;
+  }
+  table.brain-table tbody td.own-cell [contenteditable]{
+    outline: none;
+    min-height: 56px;
+    line-height: 1.5;
+    font-size: 0.96rem;
+  }
+  table.brain-table tbody td.own-cell [contenteditable]:empty:before{
+    content: attr(data-placeholder);
+    color: #bdb0a5;
+    font-weight: 400;
+  }
+
+  table.brain-table tbody tr:last-child td, table.brain-table tbody tr:last-child th{ border-bottom: none; }
+
+  .toolbar{ display:flex; justify-content:center; margin-top: 28px; }
   #saveBtn{
-    font-family:'Noto Sans KR', sans-serif;
-    font-weight: 800;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-weight: 700;
     font-size: 1rem;
     color: #fff;
     background: var(--accent);
@@ -133,11 +192,18 @@
     border-radius: 999px;
     padding: 13px 30px;
     cursor: pointer;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 3px 0 var(--accent-dark);
   }
-  #saveBtn:hover{ filter: brightness(1.06); }
-  #saveBtn:active{ transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.12); }
-  .save-note{ text-align:center; font-size: 0.85rem; color:#666; margin-top: 8px; }
+  #saveBtn:hover{ filter: brightness(1.04); }
+  #saveBtn:active{ transform: translateY(2px); box-shadow: 0 1px 0 var(--accent-dark); }
+  .save-note{ text-align:center; font-size: 0.85rem; color:#8a7a70; margin-top: 10px; }
+
+  @media (max-width: 640px){
+    table.brain-table{ font-size: 0.78rem; }
+    table.brain-table th, table.brain-table td{ padding: 8px 6px; }
+    table.brain-table tbody td.own-cell [contenteditable]{ min-height: 48px; }
+    .capture-pad{ padding: 16px 10px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -145,90 +211,92 @@
 <div class="page">
 
   <header>
-    <h1>나의 롤모델 - 브레인스토밍</h1>
-    <p>영어 발표를 시작하기 전, 먼저 생각을 자유롭게 정리해보는 단계입니다.</p>
+    <h1>나의 롤모델 브레인스토밍</h1>
+    <p>예시를 보면서 한국어로 먼저 생각하고, 영어로도 자유롭게 적어보세요!</p>
     <div class="id-row">
-      <label class="id-field"><span>학번</span><input type="text" id="studentNum" placeholder="예: 10203"></label>
-      <label class="id-field"><span>이름</span><input type="text" id="studentName" placeholder="예: 홍길동"></label>
+      <label class="id-field"><span>학번</span><input type="text" id="studentNum" placeholder="20330"></label>
+      <label class="id-field"><span>이름</span><input type="text" id="studentName" placeholder="박보검"></label>
     </div>
   </header>
 
-  <div class="divider"><span>Step 1. 예시로 브레인스토밍 살펴보기</span></div>
-  <p class="note">완성된 문장을 쓰기 전에는 이렇게 짧은 단어나 표현으로 먼저 생각을 정리해요.</p>
-
-  <div class="brain-grid">
-    <div class="brain-card b1">
-      <div class="btitle">롤 모델 이름</div>
-      <div class="bnote">김연아 (Yuna Kim)</div>
-    </div>
-    <div class="brain-card b2">
-      <div class="btitle">직업/하는 일</div>
-      <div class="bnote">피겨 스케이팅 선수, 올림픽 메달리스트</div>
-    </div>
-    <div class="brain-card b3">
-      <div class="btitle">선정한 이유</div>
-      <div class="bnote">아름다운 스케이팅, 엄청난 연습량, 어릴 때부터 열심히 노력, 세계 최고</div>
-    </div>
-    <div class="brain-card b4">
-      <div class="btitle">성격/자질/가치관</div>
-      <div class="bnote">절대 포기하지 않음, 큰 경기에서도 침착함</div>
-    </div>
-    <div class="brain-card b5">
-      <div class="btitle">나에게 미친 영향</div>
-      <div class="bnote">연습과 인내의 중요성, 꿈을 향해 꾸준히 노력하는 자세</div>
-    </div>
-    <div class="brain-card b6">
-      <div class="btitle">명언</div>
-      <div class="bnote">"처음부터 두려워하지 말자. 막상 해보면 두려울 게 없다."</div>
-    </div>
-    <div class="brain-card b7">
-      <div class="btitle">더 알고싶은 것</div>
-      <div class="bnote">힘들 때 어떻게 스스로 동기부여 했는지</div>
-    </div>
-  </div>
-
-  <div class="divider"><span>Step 2. 나만의 브레인스토밍</span></div>
-  <p class="note">완성된 문장이 아니어도 괜찮아요. 단어나 짧은 표현으로 자유롭게 떠오르는 것을 적어보세요.</p>
-
   <div class="capture-pad" id="captureArea">
-    <div class="capture-title">나의 롤모델 - 브레인스토밍</div>
+    <div class="capture-title">나의 롤모델 브레인스토밍</div>
     <div class="id-stamp" id="idStamp"></div>
-    <div class="brain-grid">
-      <div class="brain-card b1">
-        <div class="btitle">롤 모델 이름</div>
-        <div class="bnote" contenteditable="true" data-placeholder="누구를 소개하고 싶나요? 떠오르는 후보를 적어보세요."></div>
-      </div>
-      <div class="brain-card b2">
-        <div class="btitle">직업/하는 일</div>
-        <div class="bnote" contenteditable="true" data-placeholder="이 사람은 무슨 일을 하나요? 아는 대로 적어보세요."></div>
-      </div>
-      <div class="brain-card b3">
-        <div class="btitle">선정한 이유</div>
-        <div class="bnote" contenteditable="true" data-placeholder="왜 이 사람을 골랐나요? 떠오르는 이유를 적어보세요."></div>
-      </div>
-      <div class="brain-card b4">
-        <div class="btitle">성격/자질/가치관</div>
-        <div class="bnote" contenteditable="true" data-placeholder="기억에 남는 성격이나 가치관이 있나요?"></div>
-      </div>
-      <div class="brain-card b5">
-        <div class="btitle">나에게 미친 영향</div>
-        <div class="bnote" contenteditable="true" data-placeholder="이 사람에게서 무엇을 배우거나 느꼈나요?"></div>
-      </div>
-      <div class="brain-card b6">
-        <div class="btitle">명언</div>
-        <div class="bnote" contenteditable="true" data-placeholder="이 사람이 한 말 중 기억나는 것이 있나요?"></div>
-      </div>
-      <div class="brain-card b7">
-        <div class="btitle">더 알고싶은 것</div>
-        <div class="bnote" contenteditable="true" data-placeholder="이 사람에 대해 궁금한 점이 있나요?"></div>
-      </div>
+
+    <div class="table-wrap">
+      <table class="brain-table">
+        <thead>
+          <tr>
+            <th rowspan="2" style="min-width:100px;"></th>
+            <th colspan="2" class="example-head">Example</th>
+            <th colspan="2">Your Own</th>
+          </tr>
+          <tr>
+            <th class="example-sub">한국어</th>
+            <th class="example-sub">영어</th>
+            <th class="own-sub">한국어</th>
+            <th class="own-sub">영어</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>롤모델 이름</th>
+            <td class="example-cell">김연아</td>
+            <td class="example-cell">Yuna Kim</td>
+            <td class="own-cell" contenteditable="true" data-placeholder="예: 김연아"></td>
+            <td class="own-cell" contenteditable="true" data-placeholder="e.g. Yuna Kim"></td>
+          </tr>
+          <tr>
+            <th>직업/하는 일</th>
+            <td class="example-cell">피겨 스케이팅 선수</td>
+            <td class="example-cell">figure skater</td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+          </tr>
+          <tr>
+            <th>선정한 이유</th>
+            <td class="example-cell">엄청난 연습량, 아름다운 스케이팅</td>
+            <td class="example-cell">practiced a lot, beautiful skating</td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+          </tr>
+          <tr>
+            <th>성격/자질/가치관</th>
+            <td class="example-cell">포기하지 않음, 침착함</td>
+            <td class="example-cell">never gives up, stays calm</td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+          </tr>
+          <tr>
+            <th>나에게 미친 영향</th>
+            <td class="example-cell">연습과 인내의 중요성을 배움</td>
+            <td class="example-cell">learned that practice and patience matter</td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+          </tr>
+          <tr>
+            <th>명언</th>
+            <td class="example-cell">처음부터 두려워하지 말자</td>
+            <td class="example-cell">"Let's not be scared of anything from the start."</td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+          </tr>
+          <tr>
+            <th>더 알고싶은 것</th>
+            <td class="example-cell">힘들 때 어떻게 동기부여 했는지</td>
+            <td class="example-cell">what her motivation was</td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+            <td class="own-cell" contenteditable="true" data-placeholder=""></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <div class="toolbar">
     <button id="saveBtn">브레인스토밍을 JPG로 저장하기</button>
   </div>
-  <p class="save-note">"나만의 브레인스토밍" 부분만 이미지로 저장됩니다.</p>
+  <p class="save-note">위 표 전체(예시 + 나만의 브레인스토밍)가 이미지로 저장됩니다.</p>
 
 </div>
 
